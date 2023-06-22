@@ -1,0 +1,26 @@
+.title {
+    text-align: center;
+    margin: 15px;
+}
+
+
+.textWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.text {
+
+    margin: 8px;
+}
+
+.statsWrapper {
+    font-weight: 600;
+    margin: 0 auto;
+    max-width: 235px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(145, 232, 174);
+    border-radius: 0 0 20px 0;
+
+}

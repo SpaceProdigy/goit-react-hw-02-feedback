@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
-import css from './Feedback/Feedback.module.css';
-import { message, Statistics, FeedbackOptions } from './Feedback';
+import { Notification, Statistics, FeedbackOptions, Feedback } from '.';
 
 export class App extends Component {
   state = {
@@ -10,21 +8,9 @@ export class App extends Component {
     bad: 0,
   };
 
-  feedback = evt => {
-    switch (evt.target.name) {
-      case 'good':
-        this.setState(state => ({ good: state.good + 1 }));
-        break;
-      case 'neutral':
-        this.setState(state => ({ neutral: state.neutral + 1 }));
-        break;
-
-      case 'bad':
-        this.setState(state => ({ bad: state.bad + 1 }));
-        break;
-
-      default:
-    }
+  onLeaveFeedback = evt => {
+    const name = evt.target.name;
+    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
   };
 
   countTotalFeedback = () => {
@@ -45,11 +31,13 @@ export class App extends Component {
     const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
-      <section className={css.feedback}>
-        <h2 className={css.title}>Please leave feedback</h2>
-        <FeedbackOptions evt={this.feedback} />
+      <Feedback>
+        <FeedbackOptions
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={this.onLeaveFeedback}
+        />
         {total < 1 ? (
-          <p className={css.message}>{message}</p>
+          <Notification />
         ) : (
           <Statistics
             good={good}
@@ -59,7 +47,7 @@ export class App extends Component {
             positivePercentage={positivePercentage}
           />
         )}
-      </section>
+      </Feedback>
     );
   }
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import css from './Feedback.module.css';
+import css from './Statistics.module.css';
 
 export const Statistics = ({
   good,
